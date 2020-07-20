@@ -8,13 +8,13 @@ app.listen(3000, () => {
 })
 
 app.get("/", (req, res) => {
-    res.sendFile(path.resolve("index.html"))
+    res.sendFile(path.resolve("/Users/yi-linglo/github/blog/html", "index.html"))
 })
 
 app.get("/about", (req, res) => {
-    res.sendFile(path.resolve("about.html"))
+    res.sendFile(path.resolve("/Users/yi-linglo/github/blog/html", "about.html"))
 })
 
 app.get("/contact", (req, res) => {
-    res.sendFile(path.resolve("contact.html"))
+    res.sendFile(path.resolve("/Users/yi-linglo/github/blog/html", "contact.html"))
 })
