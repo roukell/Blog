@@ -2,8 +2,13 @@ const express = require("express");
 const path = require("path");
 const app = new express();
 const ejs = require("ejs");
+const mongoose = require("mongoose");
 
-app.set("view engine", "ejs")
+mongoose.connect("mondodb://localhost/my_database", {
+    useNewUrlParser: true
+})
+
+app.set("view engine", "ejs");
 
 app.use(express.static("public"));
 
@@ -21,6 +26,10 @@ app.get("/contact", (req, res) => {
 
 app.get("/post", (req, res) => {
     res.render("post")
+})
+
+app.get("/posts/new", (req, res) => {
+    res.render("create")
 })
 
 app.listen(4000, () => {
