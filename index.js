@@ -17,8 +17,15 @@ app.set("view engine", "ejs");
 
 app.use(express.static("public"));
 
-app.get("/", (req, res) => {
-    res.render("index");
+app.get("/", async (req, res) => {
+    const blogposts = await BlogPost.find({});
+    res.render("index", {
+        blogposts
+    });
+})
+
+BlogPost.find({}, (error, blogspot) => {
+    console.log(error, blogspot)
 })
 
 app.get("/about", (req, res) => {
