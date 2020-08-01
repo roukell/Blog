@@ -5,9 +5,11 @@ const ejs = require("ejs");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const BlogPost = require("./models/BlogPost");
+const { expr } = require("jquery");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
+app.use(express.static("public"));
 
 mongoose.connect("mongodb://localhost/my_database", {
     useNewUrlParser: true
@@ -23,7 +25,7 @@ app.get("/", async (req, res) => {
     });
 })
 
-BlogPost.find({title: /The/}, (error, blogspot) => {
+BlogPost.find({}, (error, blogspot) => {
     console.log(error, blogspot)
 })
 
