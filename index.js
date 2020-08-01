@@ -15,7 +15,6 @@ mongoose.connect("mongodb://localhost/my_database", {
 
 app.set("view engine", "ejs");
 
-app.use(express.static("public"));
 
 app.get("/", async (req, res) => {
     const blogposts = await BlogPost.find({});
@@ -24,7 +23,7 @@ app.get("/", async (req, res) => {
     });
 })
 
-BlogPost.find({}, (error, blogspot) => {
+BlogPost.find({title: /The/}, (error, blogspot) => {
     console.log(error, blogspot)
 })
 
@@ -36,8 +35,11 @@ app.get("/contact", (req, res) => {
     res.render("contact");
 })
 
-app.get("/post", (req, res) => {
-    res.render("post")
+app.get("/post/:id", async (req, res) => {
+    const blogposts = await BlogPost.findById(req.params.id);
+    res.render("post", {
+        blogposts
+    })
 })
 
 app.get("/posts/new", (req, res) => {
