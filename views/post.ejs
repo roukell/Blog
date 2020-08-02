@@ -10,13 +10,15 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
+          <% for (var i = 0; i < blogpost.length; i++) {%>
           <div class="post-heading">
-            <h1><%= blogposts.title %></h1>
-            <h2 class="subheading"><%= blogposts.body %></h2>
+            <h1><%= blogpost.title %></h1>
+            <h2 class="subheading"><%= blogpost.body %></h2>
             <span class="meta">Posted by
-              <a href="#"><%= blogposts[i].username %></a>
-              on <%= blogposts[i].datePosted.toDateString() %></span>
+              <a href="#"><%= blogpost[i].username %></a>
+              on <%= blogpost[i].datePosted.toDateString() %></span>
           </div>
+          <% } %>
         </div>
       </div>
     </div>
