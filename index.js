@@ -5,9 +5,6 @@ const ejs = require("ejs");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const BlogPost = require("./models/BlogPost");
-const {
-    expr
-} = require("jquery");
 const fileUPload = require("express-fileupload");
 
 app.use(fileUPload());
@@ -22,9 +19,6 @@ mongoose.connect("mongodb://localhost/my_database", {
 });
 
 app.set("view engine", "ejs");
-
-
-
 
 BlogPost.find({}, (error, blogspot) => {
     console.log(error, blogspot)
@@ -54,7 +48,7 @@ app.post("/posts/store", (req, res) => {
     image.mv(path.resolve(__dirname, "public/img", image.name), async (error) => {
         await BlogPost.create({
             ...req.body,
-            image: "/img/" + image.name
+            image: "/img/"+image.name
         });
         res.redirect("/");
     })
