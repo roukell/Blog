@@ -6,8 +6,10 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const BlogPost = require("./models/BlogPost");
 const fileUPload = require("express-fileupload");
+const newPostController = require("./controllers/newPost")
 
 app.use(fileUPload());
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
@@ -39,9 +41,7 @@ app.get("/post/:id", async (req, res) => {
     })
 })
 
-app.get("/posts/new", (req, res) => {
-    res.render("create")
-})
+app.get("/posts/new", newPostController)
 
 app.post("/posts/store", (req, res) => {
     let image = req.files.image;
