@@ -1,12 +1,12 @@
 const express = require("express");
-const path = require("path");
 const app = new express();
-const ejs = require("ejs");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
-const BlogPost = require("./models/BlogPost");
 const fileUPload = require("express-fileupload");
-const newPostController = require("./controllers/newPost")
+const newPostController = require("./controllers/newPost");
+const homeController = require("./controllers/home");
+const storePostController = require("./controllers/storePost");
+const getPostController = require("./controllers/getPost");
 
 app.use(fileUPload());
 
@@ -22,44 +22,10 @@ mongoose.connect("mongodb://localhost/my_database", {
 
 app.set("view engine", "ejs");
 
-BlogPost.find({}, (error, blogspot) => {
-    console.log(error, blogspot)
-})
-
-app.get("/about", (req, res) => {
-    res.render("about");
-})
-
-app.get("/contact", (req, res) => {
-    res.render("contact");
-})
-
-app.get("/post/:id", async (req, res) => {
-    const blogpost = await BlogPost.findById(req.params.id)
-    res.render("post", {
-        blogpost
-    })
-})
-
+app.get("/", homeController);
+app.get("/post/:id", getPostController);
+app.post("/post/store", storePostController);
 app.get("/posts/new", newPostController)
-
-app.post("/posts/store", (req, res) => {
-    let image = req.files.image;
-    image.mv(path.resolve(__dirname, "public/img", image.name), async (error) => {
-        await BlogPost.create({
-            ...req.body,
-            image: "/img/"+image.name
-        });
-        res.redirect("/");
-    })
-})
-
-app.get("*", async (req, res) => {
-    const blogposts = await BlogPost.find({});
-    res.render("index", {
-        blogposts
-    });
-})
 
 app.listen(4000, () => {
     console.log("App listening on port 4000")
