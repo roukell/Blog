@@ -5,17 +5,17 @@
 <body>
   <%-include("layouts/navbar");-%>
   <!-- Page Header -->
-  <header class="masthead" style="background-image: url('<%=blogpost.image%>')">
+  <header class="masthead" style="background-image: url('<%=blogposts.image%>')">
     <div class="overlay"></div>
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
           <div class="post-heading">
-            <h1><%=blogpost.title%></h1>
-            <h2 class="subheading"><%=blogpost.body%></h2>
+            <h1><%=blogposts.title%></h1>
+            <h2 class="subheading"><%=blogposts.body%></h2>
             <span class="meta">Posted by
-              <a href="#"><%=blogpost.username%></a>
-              on <%=blogpost.datePosted.toDateString()%></span>
+              <a href="#"><%=blogposts.username%></a>
+              on <%=blogposts.datePosted.toDateString()%></span>
           </div>
         </div>
       </div>
@@ -27,7 +27,7 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
-          <%=blogpost.body%>
+          <%=blogposts.body%>
         </div>
       </div>
     </div>

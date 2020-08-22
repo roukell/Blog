@@ -7,6 +7,7 @@ const newPostController = require("./controllers/newPost");
 const homeController = require("./controllers/home");
 const storePostController = require("./controllers/storePost");
 const getPostController = require("./controllers/getPost");
+const validateMiddleware = require("./middleware/validationMiddleware")
 
 app.use(fileUPload());
 
@@ -24,7 +25,7 @@ app.set("view engine", "ejs");
 
 app.get("/", homeController);
 app.get("/post/:id", getPostController);
-app.post("/post/store", storePostController);
+app.post("/posts/store", storePostController);
 app.get("/posts/new", newPostController)
 
 app.listen(4000, () => {
