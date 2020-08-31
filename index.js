@@ -8,6 +8,7 @@ const homeController = require("./controllers/home");
 const storePostController = require("./controllers/storePost");
 const getPostController = require("./controllers/getPost");
 const validateMiddleware = require("./middleware/validationMiddleware")
+const newUserController = require("./controllers/newUser");
 
 app.use(fileUPload());
 
@@ -26,7 +27,8 @@ app.set("view engine", "ejs");
 app.get("/", homeController);
 app.get("/post/:id", getPostController);
 app.post("/posts/store", storePostController);
-app.get("/posts/new", newPostController)
+app.get("/posts/new", newPostController);
+app.get("/auth/register", newUserController);
 
 app.listen(4000, () => {
     console.log("App listening on port 4000")
