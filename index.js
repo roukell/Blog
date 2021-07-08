@@ -10,6 +10,7 @@ const getPostController = require("./controllers/getPost");
 const validateMiddleware = require("./middleware/validationMiddleware")
 const newUserController = require("./controllers/newUser");
 const storeUserController = require("./controllers/storeUser");
+const PORT = 4000;
 
 app.use(fileUPload());
 
@@ -32,6 +33,6 @@ app.get("/posts/new", newPostController);
 app.get("/auth/register", newUserController);
 app.post("/users/register", storeUserController);
 
-app.listen(4000, () => {
-    console.log("App listening on port 4000")
+app.listen(PORT, () => {
+    console.log(`App listening on port ${PORT}`)
 })
